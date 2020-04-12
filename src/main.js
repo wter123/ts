@@ -13,6 +13,10 @@ import 'font-awesome/css/font-awesome.min.css'
 import 'bootstrapvalidator/dist/js/bootstrapValidator.min.js'
 import 'bootstrapvalidator/dist/css/bootstrapValidator.min.css'
 
+
+import axios from 'axios'
+import VueResource from 'vue-resource'
+
 Vue.config.productionTip = false
 
 new Vue({
@@ -20,3 +24,6 @@ new Vue({
     store,
     render: function(h) { return h(App) }
 }).$mount('#app')
+
+Vue.prototype.axios = axios
+Vue.use(VueResource)
