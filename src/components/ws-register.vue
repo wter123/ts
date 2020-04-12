@@ -1,13 +1,13 @@
 <template>
 		<div class="container" style="margin-top: 50px;">
-			<form id="addUserForm" class=" form form-horizontal" action="#" method="post">
+			<form id="addUserForm" class=" form form-horizontal" action="#" method="POST">
 				
 				<h3 class="text-center">用户注册</h3>
 				<!--把标签和控件放在一个from-group的div中-->
 				<div class="form-group">
 					<label for="username" class="  control-label">账<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>号</label>
 					<div class=" ">
-						<input class="form-control" type="text" name="userName" id="username" placeholder="由2-12个字符组成" />
+						<input class="form-control" v-model="username" type="text" name="userName" id="username" placeholder="由2-12个字符组成" />
 					</div>
 					<div class=" ">
 					</div>
@@ -23,7 +23,7 @@
 				<div class="form-group">
 					<label for="psw" class=" control-label">确认密码</label>
 					<div class=" ">
-						<input class="form-control" type="password" name="userPassword2" id="psw" placeholder="再次确认密码" />
+						<input class="form-control" type="password" v-model="password" name="userPassword2" id="psw" placeholder="再次确认密码" />
 					</div>
 					<div class=" ">
 					</div>
@@ -42,16 +42,14 @@
 	           
  
 	            </div>
-				<button type="submit" class="btn btn-success col-xl-12">注册</button>
+				<button type="buttom" class="btn btn-success col-xl-12" v-on:click="wsRegister">注册</button>
             	<div class="text-right" style="margin-bottom: 20px;">
                 	<router-link to="/ws-login"><a>已有账号？立即登录</a></router-link>
             	</div>
 			</form>
 		</div>
 </template>
-<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js
-"></script>
-<script  >
+<script >
 
 $(function () {
 	//表单的id
@@ -116,6 +114,47 @@ $(function () {
             }
         });
     });
+
+
+
+
+
+
+
+
+  export default {
+    name: 'wsRegister',
+    data: function () {
+      return {
+        username: '',
+        password: ''
+      }
+    },
+    methods:{
+     wsRegister: function () {
+		let that = this;
+		console.log(that.username,that.password)
+        that.$http.post('/api/register',{
+          username: that.username,
+          password: that.password
+        }).then(function (response) {
+          console.log(response.data)
+          if(parseInt(response.data.code) === 200){
+			// sessionStorage.setItem('token', response.data.token);
+            that.$router.push('/ws-login')
+          }
+        }).catch(function (error) {
+          console.log(error)
+		})
+		
+      }
+    }
+  }
+
+
+
+
+
 </script>
 
 

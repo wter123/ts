@@ -5,38 +5,49 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home
-  // },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: function () {
-  //     return import('../views/About.vue')
-  //   }
-  // },
-  {
-    path: '/ws-register',
-    name: 'ws-register',
-    component:function(){
-      return import('../components/ws-register.vue')
+    // {
+    //   path: '/',
+    //   name: 'Home',
+    //   component: Home
+    // },
+    {
+        path: '/Home',
+        name: 'Home',
+        component: function() {
+            return import ('../components/Home.vue')
+        }
+    },
+    {
+        path: '/ws-register',
+        name: 'ws-register',
+        component: function() {
+            return import ('../components/ws-register.vue')
+        }
+    }, {
+        path: '/ws-login',
+        name: 'ws-login',
+        component: function() {
+            return import ('../components/ws-login.vue')
+        }
+    }, {
+        path: '/register',
+        name: 'register',
+        component: function() {
+            return import ('../components/register.vue')
+        }
+    }, {
+        path: '/login',
+        name: 'login',
+        component: function() {
+            return import ('../components/login.vue')
+        }
     }
-  },
-  {
-    path: '/ws-login',
-    name: 'ws-login',
-    component:function(){
-      return import('../components/ws-login.vue')
-    }
-  }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
 })
 
 export default router
